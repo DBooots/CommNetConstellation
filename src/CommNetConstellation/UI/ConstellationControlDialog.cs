@@ -308,7 +308,7 @@ namespace CommNetConstellation.UI
 
         private void updateVesselGUIRow(Vessel updatedVessel)
         {
-            CNCCommNetVessel thisVessel = ((CommNetManagerAPI.ModularCommNetVessel)updatedVessel.Connection).GetModuleOfType<CNCCommNetVessel>();
+            CNCCommNetVessel thisVessel = ((CommNetManagerAPI.IModularCommNetVessel)updatedVessel.Connection).GetModuleOfType<CNCCommNetVessel>();
             //(CNCCommNetVessel)updatedVessel.Connection;
             List<DialogGUIBase> rows = vesselRowLayout.children;
 
@@ -409,7 +409,7 @@ namespace CommNetConstellation.UI
             if (updatedVessel == null)
                 return;
 
-            short vesselFrequency = ((CommNetManagerAPI.ModularCommNetVessel)updatedVessel.Connection).GetModuleOfType<CNCCommNetVessel>().getRadioFrequency();
+            short vesselFrequency = ((CommNetManagerAPI.IModularCommNetVessel)updatedVessel.Connection).GetModuleOfType<CNCCommNetVessel>().getRadioFrequency();
             //(updatedVessel.connection as CNCCommNetVessel).getRadioFrequency();
 
             updateVesselGUIRow(updatedVessel);

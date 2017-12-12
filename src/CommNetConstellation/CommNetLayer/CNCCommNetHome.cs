@@ -14,7 +14,7 @@ namespace CommNetConstellation.CommNetLayer
         private static GUIStyle groundStationHeadline;
         private bool loadCompleted = false;
 
-        public override void Initialize(CNMHome stockHome)
+        public override void Initialize(CommNetHome stockHome)
         {
             CNCLog.Verbose("CommNet Home '{0}' added", stockHome.nodeName);
             
@@ -51,10 +51,10 @@ namespace CommNetConstellation.CommNetLayer
             Vector3 position = PlanetariumCamera.Camera.WorldToScreenPoint(worldPos);
             Rect groundStationRect = new Rect((position.x - 8), (Screen.height - position.y) - 8, 16, 16);
 
-            if (isOccluded(CommNetHome.nodeTransform.transform.position, this.CommNetHome.Body))
+            if (isOccluded(CommNetHome.nodeTransform.transform.position, ((ICNMHome)this.CommNetHome).Body))
                 return;
 
-            if (!isOccluded(CommNetHome.nodeTransform.transform.position, this.CommNetHome.Body) && this.IsCamDistanceToWide(CommNetHome.nodeTransform.transform.position))
+            if (!isOccluded(CommNetHome.nodeTransform.transform.position, ((ICNMHome)this.CommNetHome).Body) && this.IsCamDistanceToWide(CommNetHome.nodeTransform.transform.position))
                 return;
 
             //draw the dot

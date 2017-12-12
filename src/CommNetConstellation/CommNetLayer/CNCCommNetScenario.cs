@@ -70,8 +70,9 @@ namespace CommNetConstellation.CommNetLayer
                 UnityEngine.Object.Destroy(bodies[i]);
             }
             */
-            CommNetManagerAPI.AssemblyChecker.SetCommNetTypes();
-
+            CommNetManagerAPI.ICommNetManager CNM = (CommNetManagerAPI.ICommNetManager)CommNetManagerAPI.CommNetManagerChecker.GetCommNetManagerInstance();
+            CNM.SetCommNetTypes();
+            
             CNCLog.Verbose("CommNet Scenario loading done! ");
         }
 
@@ -206,7 +207,7 @@ namespace CommNetConstellation.CommNetLayer
                 if (allVessels[i].connection != null) // && allVessels[i].FindPartModuleImplementing<ModuleCommand>())
                 {
                     CNCLog.Debug("Caching CommNetVessel '{0}'", allVessels[i].vesselName);
-                    this.commVessels.Add(((CommNetManagerAPI.ModularCommNetVessel)allVessels[i].connection).GetModuleOfType<CNCCommNetVessel>());
+                    this.commVessels.Add(((CommNetManagerAPI.IModularCommNetVessel)allVessels[i].connection).GetModuleOfType<CNCCommNetVessel>());
                 }
             }
 
